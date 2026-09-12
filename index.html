@@ -24,6 +24,7 @@
  
         body {
             margin: 0;
+            padding: 0 20px;
             font-family: 'Inter', sans-serif;
             /* Fondo actualizado al azul oscuro */
             background: radial-gradient(circle at top, #111b3d, var(--bg));
@@ -126,6 +127,32 @@
             max-width: 320px;
             margin: auto;
             display: block;
+        }
+
+        /* ESTILOS PARA LA SECCIÓN WORKSPACES (NUEVO) */
+        .workspace-list {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 15px 20px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            align-items: start;
+        }
+
+        .workspace-list strong {
+            font-weight: 700;
+        }
+
+        @media (max-width: 600px) {
+            .workspace-list {
+                grid-template-columns: 1fr;
+                gap: 5px;
+                margin-bottom: 30px;
+            }
+            .workspace-list strong {
+                display: block;
+                margin-top: 10px;
+            }
         }
  
         /* FOOTER */
@@ -262,7 +289,29 @@ To interact with Blender's Python API and write scripts.</p>
  
 <h2>Additional workspaces</h2>
  
-<p>111</p>
+<p>Blender offers several additional workspaces to choose from when adding a new one:</p>
+
+<h3>2D</h3>
+<div class="workspace-list">
+    <div><strong>2D :</strong></div>
+    <div>Generic workspace for working with the Grease Pencil.</div>
+    <div><strong>2D (full canvas) :</strong></div>
+    <div>Similar to "2D Animation" but with a larger canvas.</div>
+</div>
+
+<h3>Visual effects</h3>
+<div class="workspace-list">
+    <div><strong>Mask :</strong></div>
+    <div>To create 2D masks for compositing or video editing.</div>
+    <div><strong>Motion tracking :</strong></div>
+    <div>To calculate camera movement and stabilize video footage.</div>
+</div>
+
+<h3>Video editing</h3>
+<div class="workspace-list">
+    <div><strong>Video editing :</strong></div>
+    <div>To assemble different types of media into a single final video.</div>
+</div>
  
 <h3>Accessibility</h3>
  
@@ -277,4 +326,3 @@ To interact with Blender's Python API and write scripts.</p>
 </body>
  
 </html>
- 
