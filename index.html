@@ -228,7 +228,7 @@
             line-height: 1.5;
         }
 
-        /* NUEVOS ESTILOS PARA LA SECCIÓN TOOLBAR */
+        /* ESTILOS PARA LA SECCIÓN TOOLBAR */
         .ref-box-toolbar {
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
@@ -269,6 +269,8 @@
             font-size: 0.9rem;
             font-weight: 600;
             color: #e0e0e0;
+            display: inline-block;
+            margin: 0 2px;
         }
 
         .toolbar-layout {
@@ -312,6 +314,11 @@
             line-height: 1.6;
             color: var(--light);
             margin-bottom: 30px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         @media (max-width: 768px) {
@@ -571,22 +578,43 @@ It will be possible to save a custom set of workspaces as part of the Predefined
 
     <h2>Pop-up Toolbar</h2>
 
+    <div class="ref-box-toolbar">
+        <div class="ref-box-toolbar-header">
+            <span>☷</span> Reference
+        </div>
+        <div class="ref-box-toolbar-body">
+            Shortcut: <span class="kbd-key">Mayús</span> - <span class="kbd-key">Espacio</span>
+        </div>
+    </div>
 
+    <p>You can switch tools with a toolbar that will pop up at the location of your cursor after pressing <span class="kbd-key">Shift</span> - <span class="kbd-key">Spacebar</span>. The shortcuts for selecting the tools are displayed on the right.</p>
 
+    <p>Alternatively, you can map this action to <span class="kbd-key">Spacebar</span> in the Preferences. Then you'll be able use <span class="kbd-key">Spacebar</span> like a modifier key (similar to pressing <span class="kbd-key">Ctrl</span> or <span class="kbd-key">Shift</span>).</p>
+
+    <p><span class="kbd-key">Spacebar</span> <span class="kbd-key">T</span> for Transform, <span class="kbd-key">Spacebar</span> <span class="kbd-key">D</span> for Annotate, <span class="kbd-key">Spacebar</span> <span class="kbd-key">M</span> for measure, etc. See <a href="#" class="blender-link">Spacebar Action</a>.</p>
 
     <h2>Quick Favorites</h2>
 
+    <div class="ref-box-toolbar">
+        <div class="ref-box-toolbar-header">
+            <span>☷</span> Reference
+        </div>
+        <div class="ref-box-toolbar-body">
+            Shortcut: <span class="kbd-key">Q</span>
+        </div>
+    </div>
 
-
-
+    <p>The Quick Favorites menu gather your favorite tools. Any tool or menu can be added to this pop-up menu via the context menu of buttons and menus.</p>
 
     <h2>Changing Tools</h2>
 
+    <p>Pressing <span class="kbd-key">Alt</span> opens a tool prompt, shown in the <a href="#" class="blender-link">Status Bar</a>, for changing the active tool, pressing <span class="kbd-key">Alt</span> again closes the prompt.</p>
 
-
+    <p>Tools can be changed by pressing the appropriate icon or by pressing <span class="kbd-key">Alt</span> then pressing the hotkey assigned to the desired tool.</p>
 
     <h2>Backup Tool (Fallback)</h2>
 
+    <p>The fallback tool is the default tool in the Toolbar as in the tool at the top of the list. To switch to this tool use <span class="kbd-key">Alt</span> - <span class="kbd-key">W</span> to open a pie menu to choose what the default drag action does.</p>
 
 
     <h2>Cyclical Tool Selection</h2>
@@ -614,7 +642,5 @@ It will be possible to save a custom set of workspaces as part of the Predefined
 </body>
  
 </html>
-
-
 
 
