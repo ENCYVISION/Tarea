@@ -1,391 +1,124 @@
-<!DOCTYPE html>
-<html lang="es">
- 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> | Actividad 3. Documentación sobre la configuración de la interfaz de Blender </title>
- 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
- 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
- 
-    <style>
-        :root {
-            /* Nuevos colores definidos */
-            --bg: #060b19;
-            --violet: #415466;
-            --light: #FCFAFA;
-            --green: #D3DCE3;
-            --red: #931621;
-            --blue-link: #4da6ff;
-            --dark-panel: rgba(20, 24, 30, 0.8);
-            --border-color: rgba(255, 255, 255, 0.15);
-        }
- 
-        body {
-            margin: 0;
-            padding: 0 20px;
-            font-family: 'Inter', sans-serif;
-            /* Fondo actualizado al azul oscuro */
-            background: radial-gradient(circle at top, #111b3d, var(--bg));
-            color: var(--light);
-        }
- 
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
-        }
- 
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
- 
-        .hero p {
-            color: var(--green);
-            margin-top: 10px;
-        }
- 
-        .counter {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
- 
-        /* GRID */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            padding: 40px;
-            max-width: 1200px;
-            margin: auto;
-        }
- 
-        @media (max-width: 900px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
- 
-        /* CARD */
-        .card {
-            /* Colores rgba actualizados para coincidir con el nuevo --violet (#415466) */
-            background: rgba(65, 84, 102, 0.15);
-            border: 1px solid rgba(65, 84, 102, 0.35);
-            border-radius: 18px;
-            padding: 20px;
-            transition: 0.3s ease;
-        }
- 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--green);
-        }
- 
-        /* 🔥 TITULOS MEJORADOS */
-        .card h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 15px;
-            color: var(--light);
- 
-            padding: 8px 12px;
-            border-radius: 10px;
- 
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(6px);
- 
-            border: 1px solid rgba(255, 255, 255, 0.08);
- 
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-        }
- 
-        .card h2::after {
-            content: "";
-            display: block;
-            width: 40px;
-            height: 2px;
-            background: var(--violet);
-            margin: 8px auto 0;
-            border-radius: 2px;
-            opacity: 0.7;
-        }
- 
-        iframe {
-            width: 100%;
-            border-radius: 12px;
-            border: none;
-        }
- 
-        /* Shorts */
-        .short iframe {
-            height: 560px;
-            max-width: 320px;
-            margin: auto;
-            display: block;
-        }
-
-        /* ESTILOS PARA LA SECCIÓN WORKSPACES */
-        .workspace-list {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 15px 20px;
-            margin-bottom: 25px;
-            font-size: 1rem;
-            align-items: start;
-        }
-
-        .workspace-list strong {
-            font-weight: 700;
-        }
-
-        @media (max-width: 600px) {
-            .workspace-list {
-                grid-template-columns: 1fr;
-                gap: 5px;
-                margin-bottom: 30px;
-            }
-            .workspace-list strong {
-                display: block;
-                margin-top: 10px;
-            }
-        }
-
-        /* ESTILOS PARA LA PROPIEDADES DE WORKSPACE */
-        .reference-box {
-            background-color: var(--dark-panel);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 15px 20px;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
-        .ref-header {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-            margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .ref-header span {
-            font-size: 1.2rem;
-            margin-right: 10px;
-        }
-
-        .ref-row {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .ref-row strong {
-            width: 60px;
-        }
-
-        .path-box {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-
-        .blender-link {
-            color: var(--blue-link);
-            text-decoration: none;
-        }
-
-        .blender-link:hover {
-            text-decoration: underline;
-        }
-
-        .property-item {
-            margin-bottom: 25px;
-        }
-
-        .property-item strong {
-            display: block;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .property-item p {
-            margin-left: 20px;
-            color: #d1d1d1;
-            margin-top: 5px;
-            line-height: 1.5;
-        }
-
-        /* ESTILOS PARA LA SECCIÓN TOOLBAR */
-        .ref-box-toolbar {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            margin-bottom: 25px;
-            overflow: hidden;
-        }
-        
-        .ref-box-toolbar-header {
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 8px 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            font-size: 1.05rem;
-        }
-        
-        .ref-box-toolbar-header span {
-            margin-right: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .ref-box-toolbar-body {
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 0.95rem;
-        }
-        
-        .kbd-key {
-            background-color: #2a2e38;
-            border: 1px solid #555;
-            box-shadow: 0 2px 0 #111;
-            border-radius: 4px;
-            padding: 2px 8px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #e0e0e0;
-            display: inline-block;
-            margin: 0 2px;
-        }
-
-        .toolbar-layout {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-        
-        .toolbar-text {
-            flex: 1;
-        }
-        
-        .toolbar-text p {
-            margin-top: 0;
-            line-height: 1.6;
-            color: var(--light);
-            margin-bottom: 25px;
-        }
-        
-        .toolbar-image-container {
-            flex-shrink: 0;
-            max-width: 300px;
-        }
-        
-        .toolbar-image-container img {
-            width: 100%;
-            border-radius: 4px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .toolbar-image-container p {
-            font-style: italic;
-            font-size: 0.85rem;
-            color: #a0a0a0;
-            margin-top: 8px;
-            line-height: 1.3;
-        }
-        
-        .toolbar-bottom-text {
-            line-height: 1.6;
-            color: var(--light);
-            margin-bottom: 30px;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        ul {
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        @media (max-width: 768px) {
-            .toolbar-layout {
-                flex-direction: column;
-            }
-            .toolbar-image-container {
-                max-width: 100%;
-            }
-        }
- 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-            opacity: 0.6;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 40px;
-        }
-    </style>
-</head>
- 
 <body>
- 
+
+
     <div class="hero">
         <h1>Documentación sobre la configuración de la interfaz de Blender</h1>
-        <p>Moi</p>
+       
     </div>
-    
-    <h1> Window System Introduction </h1>
+        <h1> Window System Introduction </h1>
     <p>After starting Blender and closing the Splash Screen, the Blender window should look similar to the image below.</p>
- 
+
+
    
- 
-<img src="https://docs.blender.org/manual/es/latest/_images/interface_window-system_introduction_default-startup.webp" alt=""> 
+
+
+<img src="https://docs.blender.org/manual/en/latest/_images/interface_window-system_introduction_default-startup.webp" alt="">
     <p>The default startup Blender window.</p>
- 
+
+
 <p>Blender’s interface is separated into three main parts:</p>
- 
+
+
 <p>The Topbar at the very top, consists of the main menu, which is used for saving, importing and exporting files, configuring settings, and rendering among other functions.</p>
- 
+
+
 <p>Areas in the middle, which is the main workspace.</p>
- 
+
+
 <p>The Status Bar at the bottom, which displays shortcut suggestions and relevant statistics.</p>
- 
-<img src="https://docs.blender.org/manual/es/latest/_images/interface_window-system_introduction_default-screen.png" alt=""> 
+
+
+<img src="https://docs.blender.org/manual/en/latest/_images/interface_window-system_introduction_default-screen.png" alt="">
 <p>Blender’s default Screen Layout. Topbar (blue), Areas (green) and Status Bar (red).</p>
- 
+
+
 <h2>Customization</h2>
 <h3>Keyboard shortcuts</h3>
- 
-<p>Blender makes heavy use of keyboard shortcuts to speed up work. These can be customized in the Keymap Editor.</p>
- 
-<h3>Theme colors</h3>
- 
-<p>Blender allows for most of its interface colors to be changed to suit the needs of the user. If you find that the colors you see on screen do not match those in the Manual, it could be that your default theme has been altered. Creating a new theme or selecting/altering a preexisting one can be done by opening the Preferences and clicking on the Themes tab.</p>
- 
-<h3>Accessibility</h3>
- 
-<p>Blender has several options for visibility customization, including resolution scale, and the ability to load custom fonts. These settings can be configured in the Interface Preferences.</p>
 
+
+<p>Blender makes heavy use of keyboard shortcuts to speed up work. These can be customized in the Keymap Editor.</p>
+
+
+<h3>Input Devices</h3>
+<p>Blender supports various types of input devices:</p>
+
+
+<p>Keyboard (recommended: keyboard with numeric keypad, English layout works best)</p>
+
+
+<p>Mouse (recommended: three button mouse with scroll wheel)</p>
+
+
+<p>Graphic Tablet</p>
+
+
+<p>Touchpad</p>
+
+
+<p>NDOF Device (also known as 3D Mouse)</p>
+
+
+<p>Note</p>
+
+
+<p>If you don’t have a middle mouse button or numeric keypad, you can emulate these in the Input Preferences. However, be aware that these emulations may cause the loss of some shortcut keys. Where possible, it is suggested to use the recommended hardware.</p>
+
+
+<h3>Mouse</h3>
+<p>A number of Blender interactions utilize the middle button (clicking the scroll wheel), or the use of the scroll wheel. This is why the recommendation for a mouse is a two-button mouse with an added scroll wheel that acts as a middle button (effectively a 3-button mouse). This will allow for the most efficient workflow within all of Blender’s modules.</p>
+
+
+<h3>Mouse Button Emulation</h3>
+<p>If you do not have a 3 button mouse, you will need to emulate it by checking the option in the Preferences.</p>
+
+
+<p>The following table shows the combinations used:</p>
+
+
+<h3>3-button Mouse</h3>
+
+
+<p>LMB</p>
+
+
+<p>MMB</p>
+
+
+<p>RMB</p>
+
+
+<p>2-button Mouse</p>
+
+
+<p>LMB</p>
+
+
+<p>Alt-LMB</p>
+
+
+<p>RMB</p>
+
+
+<h3>Keyboard</h3>
+<p>A number of Blender interactions utilize the keyboard’s number pad (or numpad). This is the set of 10 numeric keys plus mathematical functions that appears on the right side of a traditional 104-key full-sized keyboard. This will allow for the most efficient workflow within all of Blender’s modules.</p>
+
+
+<p>Note</p>
+
+
+<p>You can also change the keymap from the Preferences. However, this manual assumes you are using the default keymap.</p>
+
+
+<h3>Theme colors</h3>
+
+
+<p>Blender allows for most of its interface colors to be changed to suit the needs of the user. If you find that the colors you see on screen do not match those in the Manual, it could be that your default theme has been altered. Creating a new theme or selecting/altering a preexisting one can be done by opening the Preferences and clicking on the Themes tab.</p>
+
+
+<h3>Accessibility</h3>
+
+
+<p>Blender has several options for visibility customization, including resolution scale, and the ability to load custom fonts. These settings can be configured in the Interface Preferences.</p>
 
 
 <h1> Workspaces </h1>
@@ -393,13 +126,15 @@
  
    
  
-<img src="https://docs.blender.org/manual/es/latest/_images/interface_window-system_workspaces_screen.png" alt=""> 
+<img src="https://docs.blender.org/manual/es/latest/_images/interface_window-system_workspaces_screen.png" alt="">
     <p>The workspaces are located in the top  bar</p>
+
 
     <h1> Controles </h1>
     <h1> Eyelashes </h1>
  
 <p>Click on the tabs to switch between workspaces. Double-click a tab to rename the workspace.</p>
+
 
     <h1> Context Menu(RMB)</h1>
  
@@ -407,62 +142,83 @@
  
 <p>(Delete)Deletes the selected workspace. If it is the last workspace, it cannot be removed.</p>
 
+
  
 <p>(Reorder to Front/Back)Moves the workspace tab to the first (front) or last (back) position in the tab list.</p>
  
  
 <p>(Previous Workspace CTRL-PAGEUP)Activates the workspace immediately to the left of the current one.</p>
 
+
 <p>(Next Workspace CTRL-ÁGEDOWN)Activates the workspace immediately to the right of the current one.</p>
+
 
 <p>(Delete Other Workspaces)Removes all workspaces except the one that was right-clicked on.</p>
 
+
 <h2>Predefined workspaces</h2>
+
 
 <p>Blender's default startup will display the "Arrange" workspace in the main area. This is a general workspace for previewing the scene and contains the following editors:
 
+
 3D view top left.
+
 
 Listed above on the right.
 
+
 Properties at the bottom left.
+
 
 Timeline on bottom left.</p>
 
-<img src="https://docs.blender.org/manual/es/latest/_images/interface_window-system_workspaces_layout.png" alt=""> 
+
+<img src="https://docs.blender.org/manual/es/latest/_images/interface_window-system_workspaces_layout.png" alt="">
 <p>Blender’s's "Organize" workspace with four editors.
+
 
 3D View (yellow), Listing (green), Properties (blue) and Timeline (red).</p>
  
 <h2>Blender also has several other additional workspaces, added by default:</h2>
 
+
  
 <p>Modeling :
 For modifying geometry with modeling tools.
 
+
 Sculpt :
 For modifying meshes using sculpting tools.
+
 
 UV Edition :
 For mapping image texture coordinates to 3D surfaces.
 
+
 Painting Textures :
 To color image textures in 3D View.
+
 
 Shading :
 To specify material properties for processing.
 
+
 Animation :
 To make the properties of objects dependent on time.
+
 
 Processing :
 To visualize and analyze the processing results.
 
+
 Composition :
 To combine and post-process image and processing information.
 
+
 Geometry nodes :
 For procedural modeling using Geometry Nodes .
+
 
 Scripts :
 To interact with Blender's Python API and write scripts.</p>
@@ -470,6 +226,7 @@ To interact with Blender's Python API and write scripts.</p>
 <h2>Additional workspaces</h2>
  
 <p>Blender offers several additional workspaces to choose from when adding a new one:</p>
+
 
 <h3>2D</h3>
 <div class="workspace-list">
@@ -479,6 +236,7 @@ To interact with Blender's Python API and write scripts.</p>
     <div>Similar to "2D Animation" but with a larger canvas.</div>
 </div>
 
+
 <h3>Visual effects</h3>
 <div class="workspace-list">
     <div><strong>Mask :</strong></div>
@@ -486,6 +244,7 @@ To interact with Blender's Python API and write scripts.</p>
     <div><strong>Motion tracking :</strong></div>
     <div>To calculate camera movement and stabilize video footage.</div>
 </div>
+
 
 <h3>Video editing</h3>
 <div class="workspace-list">
@@ -497,9 +256,12 @@ To interact with Blender's Python API and write scripts.</p>
  
 <p>Workspaces are saved in the .blend file. When you open a file, enabling Load Interface in the File Explorer will tell Blender to use the file's screen layout instead of the current one.
 
+
 It will be possible to save a custom set of workspaces as part of the Predefined ones .</p>
 
+
 <h2>Workspace properties</h2>
+
 
 <div class="reference-box">
     <div class="ref-header">
@@ -509,32 +271,37 @@ It will be possible to save a custom set of workspaces as part of the Predefined
         <strong>Editor:</strong> <a href="#" class="blender-link">Property Editor</a>
     </div>
     <div class="ref-row" style="flex-wrap: wrap;">
-        <strong>Panel:</strong> 
-        <span class="path-box">Properties ▸ Tool ▸ Workspace</span> 
-        the 
+        <strong>Panel:</strong>
+        <span class="path-box">Properties ▸ Tool ▸ Workspace</span>
+        the
         <span class="path-box">Sidebar ▸ Tool ▸ Workspace</span>
     </div>
 </div>
+
 
 <div class="property-item">
     <strong>Set scene</strong>
     <p>When active, the current workspace will remember the currently selected scene. Later, when this workspace is selected again, it will automatically switch to that scene.</p>
 </div>
 
+
 <div class="property-item">
     <strong>Way</strong>
     <p>Switch to this <a href="#" class="blender-link">mode</a> when the workspace is activated.</p>
 </div>
+
 
 <div class="property-item">
     <strong>Sequencer Scene</strong>
     <p>The scene containing the edit that is used by the video sequence editor. See <a href="#" class="blender-link">Sequencer Scene</a>.</p>
 </div>
 
+
 <div class="property-item">
     <strong>Sync Scene Time</strong>
     <p>Sync the active scene and time based on the current <a href="#" class="blender-link">scene strip</a> in the video sequence editor. See <a href="#" class="blender-link">Sequencer Scene</a>.</p>
 </div>
+
 
 <div class="property-item">
     <strong>Filter add-ons</strong>
@@ -542,22 +309,34 @@ It will be possible to save a custom set of workspaces as part of the Predefined
 </div>
 
 
+
+
     <h2>Tools System</h2>
+
 
     <p>The tools are accessible from the Toolbar .</p>
 
+
     <p>This is a general introduction to tools, individual tools have their own documentation.</p>
+
 
     <p>There can only be one active tool which is stored for each space & mode.</p>
 
+
     <p>Tools may set their own keys which override other keys although typically they use the LMB, sometimes with modifier keys. Keymaps can be edited from the preferences.</p>
+
 
     <p>Some tools define gizmos (Shear and Spin for example) to help control the tool.</p>
 
 
 
 
+
+
+
+
     <h2>Toolbar</h2>
+
 
     <div class="ref-box-toolbar">
         <div class="ref-box-toolbar-header">
@@ -567,6 +346,7 @@ It will be possible to save a custom set of workspaces as part of the Predefined
             Shortcut: <span class="kbd-key">T</span>
         </div>
     </div>
+
 
     <div class="toolbar-layout">
         <div class="toolbar-text">
@@ -579,9 +359,12 @@ It will be possible to save a custom set of workspaces as part of the Predefined
         </div>
     </div>
 
+
     <p class="toolbar-bottom-text">Resizing the Toolbar horizontally will display the icons in two columns. Expanding it further will display the icon and its text.</p>
 
+
     <h2>Pop-up Toolbar</h2>
+
 
     <div class="ref-box-toolbar">
         <div class="ref-box-toolbar-header">
@@ -592,13 +375,18 @@ It will be possible to save a custom set of workspaces as part of the Predefined
         </div>
     </div>
 
+
     <p>You can switch tools with a toolbar that will pop up at the location of your cursor after pressing <span class="kbd-key">Shift</span> - <span class="kbd-key">Spacebar</span>. The shortcuts for selecting the tools are displayed on the right.</p>
+
 
     <p>Alternatively, you can map this action to <span class="kbd-key">Spacebar</span> in the Preferences. Then you'll be able use <span class="kbd-key">Spacebar</span> like a modifier key (similar to pressing <span class="kbd-key">Ctrl</span> or <span class="kbd-key">Shift</span>).</p>
 
+
     <p><span class="kbd-key">Spacebar</span> <span class="kbd-key">T</span> for Transform, <span class="kbd-key">Spacebar</span> <span class="kbd-key">D</span> for Annotate, <span class="kbd-key">Spacebar</span> <span class="kbd-key">M</span> for measure, etc. See <a href="#" class="blender-link">Spacebar Action</a>.</p>
 
+
     <h2>Quick Favorites</h2>
+
 
     <div class="ref-box-toolbar">
         <div class="ref-box-toolbar-header">
@@ -609,26 +397,38 @@ It will be possible to save a custom set of workspaces as part of the Predefined
         </div>
     </div>
 
+
     <p>The Quick Favorites menu gather your favorite tools. Any tool or menu can be added to this pop-up menu via the context menu of buttons and menus.</p>
+
 
     <h2>Changing Tools</h2>
 
+
     <p>Pressing <span class="kbd-key">Alt</span> opens a tool prompt, shown in the <a href="#" class="blender-link">Status Bar</a>, for changing the active tool, pressing <span class="kbd-key">Alt</span> again closes the prompt.</p>
+
 
     <p>Tools can be changed by pressing the appropriate icon or by pressing <span class="kbd-key">Alt</span> then pressing the hotkey assigned to the desired tool.</p>
 
+
     <h2>Backup Tool (Fallback)</h2>
+
 
     <p>The fallback tool is the default tool in the Toolbar as in the tool at the top of the list. To switch to this tool use <span class="kbd-key">Alt</span> - <span class="kbd-key">W</span> to open a pie menu to choose what the default drag action does.</p>
 
 
+
+
     <h2>Cyclical Tool Selection</h2>
+
 
     <p>If you bind a key to a tool which is part of a group, you can enable the <em>Cycle</em> option in the keymap editor. Successive presses will cycle through the tools in that group.</p>
 
+
     <h2>Properties</h2>
 
+
     <p>The tools may have their own settings, available in multiple places:</p>
+
 
     <ul>
         <li>The <span class="path-box">Sidebar ▸ Tools ▸ Active Tool</span> panel.</li>
@@ -636,15 +436,164 @@ It will be possible to save a custom set of workspaces as part of the Predefined
         <li>The <em>Tool Settings</em> region.</li>
     </ul>
 
- 
+
+<h2>User Preferences</h2>
+<p>Here are some preferences that you may wish to set initially. See the section Preferences for the complete list of available settings. The shortcut Ctrl-Comma can be used to quickly open the Preferences editor.</p>
+
+
+<h3>Auto-Save Preferences</h3>
+<p>By default, a new Blender installation is set to auto-save changes to preferences, so you don’t accidentally lose a change you have made. To disable this behavior, perform these steps:</p>
+
+
+<h3>Open the Preferences dialog</h3>
+
+
+<p>Click on the small menu at the lower left (shown by 3 lines)</p>
+
+
+<p>Uncheck the box next to “Auto-Save Preferences”</p>
+
+
+<p>Click the “Save Preferences” button that will appear in the lower left of the dialog. Don’t forget this step, as the change will not be saved otherwise.</p>
+
+
+<p>To enable auto-save once again, simply follow steps 1-3 above and check the box in step 3.</p>
+
+
+<h3>Language</h3>
+<p>Enable Edit ‣ Preferences ‣ Interface ‣ Translation, and choose the Language and what to translate from Interface, Tooltips and New Data.</p>
+
+
+<h3>Input</h3>
+<p>If you have a compact keyboard without a separate number pad, enable Preferences ‣ Input ‣ Keyboard ‣ Emulate Numpad. This gives you the 3D view shortcuts regularly used on the number pad.</p>
+
+
+<p>If you do not have a middle mouse button, you can enable Preferences ‣ Input ‣ Mouse ‣ Emulate 3 Button Mouse. This allows you to hold the Alt or OSKey key while dragging with the mouse, to orbit.</p>
+
+
+<h3>File and Paths</h3>
+<p>At Preferences ‣ File Paths you can set options such as what Image Editor (GIMP, Krita…) and Animation Player to use.</p>
+
+
+<p>The Temporary Directory sets where to store files such as temporary renders and auto-saves.</p>
+
+
+<h3>Save & Load</h3>
+<p>If you trust the source of your blend-files, you can enable Auto Run Python Scripts. This option is meant to protect you from malicious Python scripts in blend-files that you got from someone else. Many users turn this option on, as advanced rigs tend to use scripts of some sort. Use caution, as this is a global setting, and may allow potentially malicious Python code from an untrusted source to run.</p>
+
+
     </div>
- 
-    <footer>
-        · Documentación sobre la configuración de la interfaz de Blender · 2026
-    </footer>
- 
+<!-- Scripts -->
+<h2>Scripts</h2>
+
+<p>Apart from add-ons, there are also scripts you can use to extend Blender’s functionality:</p>
+
+<p>Modules: Utility libraries for import into other scripts.</p>
+
+<p>Presets: Settings for Blender’s tools and key configurations.</p>
+
+<p>Startup: These files are imported when starting Blender. They define most of Blender’s UI, as well as some additional core operators.</p>
+
+<p>Custom scripts: In contrast to add-ons, they are typically intended for one-time execution via the Text Editor.</p>
+
+
+<h3>Saving your own scripts</h3>
+
+<p>
+    File Location: All scripts are loaded from the scripts folder of the local, system and user paths.
+    You can set up an additional search path for scripts in File Paths Preferences ‣ File Paths.
+</p>
+
+
+<p>
+    Installation: Add-ons are conveniently installed through Blender in the Preferences.
+    Click the Install… button and select the .py or .zip file.
+</p>
+
+<p>
+    To manually install scripts or add-ons, place them in the addons, modules, presets,
+    or startup directory according to their type. See the description above.
+</p>
+
+
+<!-- Área de trabajo -->
+<h2>Workspaces</h2>
+
+<p>
+    Workspaces are essentially predefined window layouts. Each Workspace consists of a set
+    of Areas containing Editors, and is geared towards a specific task such as modeling,
+    animating, or scripting. You’ll typically switch between multiple Workspaces while
+    working on a project.
+</p>
+
+<h3>Add a Workspace</h3>
+
+<p>
+    Adds a new workspace from a predefined template (e.g. Modeling, Sculpting, Compositing).
+</p>
+
+
+<h3>Save and Override</h3>
+
+<p>
+    The workspaces are saved in the blend-file. When you open a file, enabling Load UI in
+    the File Browser indicates that Blender should use the file’s screen layout rather than
+    the current one. A custom set of workspaces can be saved as a part of the Defaults.
+</p>
+
+<p>
+    Pin Scene: When enabled, the current workspace will remember the currently selected scene.
+    Then, whenever you activate the workspace, it’ll automatically switch back to that scene.
+</p>
+
+<p>
+    Mode: Switch to this Mode when activating the workspace.
+</p>
+
+<p>
+    Sequencer Scene: The scene containing the edit that is used by the video sequence editor.
+    See Sequencer Scene.
+</p>
+
+<p>
+    Sync Scene Time: Sync the active scene and time based on the current scene strip in the
+    video sequence editor. See Sequencer Scene.
+</p>
+
+<p>
+    Filter Add-ons: Determines which add-ons are enabled in the active workspace.
+    When unchecked, the global add-ons will be used. When checked, you can enable individual
+    add-ons in the list below.
+</p>
+
+
+<!-- Autoguardado -->
+<h2>Auto-Save Preferences</h2>
+
+<p>
+    By default, a new Blender installation is set to auto-save changes to preferences,
+    so you don’t accidentally lose a change you have made. To disable this behavior,
+    perform these steps:
+</p>
+
+<p>Open the Preferences dialog.</p>
+
+<p>1. Click on the small menu at the lower left (shown by 3 lines).</p>
+
+<p>2. Uncheck the box next to “Auto-Save Preferences”.</p>
+
+<p>
+    Click the “Save Preferences” button that will appear in the lower left of the dialog.
+    Don’t forget this step, as the change will not be saved otherwise.
+</p>
+
+</div>
+
+<footer>
+    VANTE · Documentación sobre la configuración de la interfaz de Blender · 2026
+</footer>
+
 </body>
- 
 </html>
 
 
